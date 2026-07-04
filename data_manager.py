@@ -14,10 +14,18 @@ class DataManager:
     def get_movies(self, user_id):
         return Movie.query.filter_by(user_id=user_id).all()
 
-    def add_movie(self, movie):
-        db.session.add(movie)
+    def add_movie(self, user_id, name, director, year, poster_url):
+        new_movie = Movie(
+            name=name,
+            director=director,
+            year=year,
+            poster_url=poster_url,
+            user_id=user_id
+        )
+
+        db.session.add(new_movie)
         db.session.commit()
-        return movie
+        return new_movie
 
     def update_movie(self, movie_id, new_title):
         movie = Movie.query.get(movie_id)
