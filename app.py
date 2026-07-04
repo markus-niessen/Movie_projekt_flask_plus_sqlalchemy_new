@@ -9,7 +9,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
 
-data_manager = DataManager(db)
+data_manager = DataManager()
 
 
 @app.route("/")
