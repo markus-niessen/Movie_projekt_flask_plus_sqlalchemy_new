@@ -1,12 +1,25 @@
 from flask import Flask
+from data_manager import DataManager
+from models import db, Movie
 
 app = Flask(__name__)
 
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///moviweb.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+db.init_app(app)
+
+data_manager = DataManager(db)
 
 
-if __name__ == '__main__':
-    app.run()
+@app.route("/")
+def home():
+    return "Welcome to MoviWeb App!"
+
+
+with app.app_context():
+    db.create_all()
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
