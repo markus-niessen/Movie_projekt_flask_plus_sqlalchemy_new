@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="{{ url_for('home') }}" class="back-link">← Back to Users</a>
+
+<h1>Favorite Movies</h1>
+
+<ul class="movie-list">
+    {% for movie in movies %}
+    <li class="movie-card">
+
+        <h3>{{ movie.name }}</h3>
+
+        <p><strong>Director:</strong> {{ movie.director }}</p>
+        <p><strong>Year:</strong> {{ movie.year }}</p>
+
+        <img
+            src="{{ movie.poster_url }}"
+            alt="{{ movie.name }}"
+            width="150"
+        >
+
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>Add Movie</h2>
+
+<form action="{{ url_for('user_movies', user_id=user_id) }}" method="post" class="movie-form">
+
+    <input
+        type="text"
+        name="name"
+        placeholder="Movie title"
+        required
+    >
+
+    <input
+        type="text"
+        name="director"
+        placeholder="Director"
+        required
+    >
+
+    <input
+        type="number"
+        name="year"
+        placeholder="Release year"
+        required
+    >
+
+    <input
+        type="url"
+        name="poster_url"
+        placeholder="Poster URL"
+        required
+    >
+
+    <button type="submit" class="btn">
+        Add Movie
+    </button>
+
+</form>
+
+{% endblock %}
