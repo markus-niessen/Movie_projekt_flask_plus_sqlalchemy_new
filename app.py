@@ -51,7 +51,14 @@ def user_movies(user_id):
         return redirect(url_for("user_movies", user_id=user_id))
 
     movies = data_manager.get_movies(user_id)
-    return render_template("movies.html", movies=movies, user_id=user_id)
+    user = data_manager.get_user(user_id)
+
+    return render_template(
+        "movies.html",
+        movies=movies,
+        user=user,
+        user_id=user_id
+    )
 
 
 @app.route("/users/<int:user_id>/movies/<int:movie_id>/update", methods=["POST"])

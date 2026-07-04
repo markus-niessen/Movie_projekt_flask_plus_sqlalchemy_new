@@ -2,65 +2,76 @@
 
 {% block content %}
 
-<a href="{{ url_for('home') }}" class="back-link">← Back to Users</a>
+<a href="{{ url_for('home') }}" class="back-link">
+    ← Back to Users
+</a>
 
-<h1>Favorite Movies</h1>
+<h1>Movies for {{ user.name }}</h1>
 
-<ul class="movie-list">
+<div class="movie-list">
+
     {% for movie in movies %}
-    <li class="movie-card">
+    <div class="movie-card">
+
+        <img src="{{ movie.poster_url }}" alt="{{ movie.name }}">
 
         <h3>{{ movie.name }}</h3>
 
-        <p><strong>Director:</strong> {{ movie.director }}</p>
-        <p><strong>Year:</strong> {{ movie.year }}</p>
-
-        <img
-            src="{{ movie.poster_url }}"
-            alt="{{ movie.name }}"
-            width="150"
+        <form
+            action="{{ url_for('update_movie', user_id=user_id, movie_id=movie.id) }}"
+            method="post"
+            class="update-form"
         >
+            <input
+                type="text"
+                name="name"
+                placeholder="New movie title"
+                required
+            >
 
-    </li>
+            <button type="submit" class="btn">
+                Update
+            </button>
+        </form>
+
+        <p><strong>Year:</strong> {{ movie.year }}</p>
+        <p><strong>Director:</strong> {{ movie.director }}</p>
+
+        <form
+            action="{{ url_for('delete_movie', user_id=user_id, movie_id=movie.id) }}"
+            method="post"
+        >
+            <button type="submit" class="btn delete-btn">
+                Delete
+            </button>
+        </form>
+
+    </div>
     {% endfor %}
-</ul>
 
-<h2>Add Movie</h2>
+</div>
 
-<form action="{{ url_for('user_movies', user_id=user_id) }}" method="post" class="movie-form">
+<div class="form-card">
 
-    <input
-        type="text"
-        name="name"
-        placeholder="Movie title"
-        required
+    <h2>Add New Movie</h2>
+
+    <form
+        action="{{ url_for('user_movies', user_id=user_id) }}"
+        method="post"
+        class="movie-form"
     >
 
-    <input
-        type="text"
-        name="director"
-        placeholder="Director"
-        required
-    >
+        <input type="text" name="name" placeholder="Movie title" required>
+        <input type="text" name="director" placeholder="Director" required>
+        <input type="number" name="year" placeholder="Release year" required>
+        <input type="url" name="poster_url" placeholder="Poster URL" required>
 
-    <input
-        type="number"
-        name="year"
-        placeholder="Release year"
-        required
-    >
+        <button type="submit" class="btn">
+            Add Movie
+        </button>
 
-    <input
-        type="url"
-        name="poster_url"
-        placeholder="Poster URL"
-        required
-    >
+    </form>
 
-    <button type="submit" class="btn">
-        Add Movie
-    </button>
-
-</form>
+</div>
 
 {% endblock %}

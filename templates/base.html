@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoviWeb App</title>
-
+    <title>MovieApp</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
 
-<header>
-    <h1>
-        <a href="{{ url_for('home') }}">🎬 MoviWeb App</a>
-    </h1>
-
-    <nav>
-        <a href="{{ url_for('home') }}">Home</a>
-    </nav>
+<header class="header">
+    <div class="container">
+        <h1>🎬 MovieApp</h1>
+    </div>
 </header>
 
 <main class="container">
     {% block content %}
     {% endblock %}
 </main>
+
+<footer class="footer">
+    <p>© 2025 MovieApp. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
