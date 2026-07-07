@@ -22,12 +22,14 @@
             method="post"
             class="update-form"
         >
-            <input
-                type="text"
-                name="name"
-                placeholder="New movie title"
-                required
-            >
+            <label>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="New movie title"
+                    required
+                >
+            </label>
 
             <button type="submit" class="btn">
                 Update
@@ -61,10 +63,12 @@
         class="movie-form"
     >
 
-        <input type="text" name="name" placeholder="Movie title" required>
-        <input type="text" name="director" placeholder="Director" required>
-        <input type="number" name="year" placeholder="Release year" required>
-        <input type="url" name="poster_url" placeholder="Poster URL" required>
+        <label>
+            <input type="text" name="name" placeholder="Movie title" required>
+        </label>
+        <label>
+            <input type="number" name="year" placeholder="Year optional">
+        </label>
 
         <button type="submit" class="btn">
             Add Movie

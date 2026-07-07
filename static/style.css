@@ -13,38 +13,39 @@ body {
 .header {
     background: #2563eb;
     color: white;
-    padding: 42px 0;
+    padding: 28px 0;
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 900px;
     width: 90%;
     margin: 0 auto;
 }
 
 .header h1 {
-    font-size: 34px;
+    font-size: 24px;
     font-weight: 700;
 }
 
 main.container {
-    padding: 45px 0;
+    padding: 32px 0;
     min-height: 620px;
 }
 
 h1 {
-    font-size: 42px;
-    margin-bottom: 32px;
+    font-size: 30px;
+    margin-bottom: 26px;
 }
 
 h2 {
-    font-size: 26px;
-    margin-bottom: 22px;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 h3 {
-    font-size: 24px;
-    margin: 18px 0 10px;
+    font-size: 20px;
+    margin: 14px 0 8px;
+    word-break: break-word;
 }
 
 a {
@@ -54,64 +55,83 @@ a {
 
 .back-link {
     display: inline-block;
-    margin-bottom: 22px;
-    font-weight: 600;
+    margin-bottom: 18px;
+    font-size: 14px;
 }
+
+/* Users page */
 
 .user-list {
-    margin-bottom: 36px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    list-style: none;
+    margin-bottom: 32px;
 }
 
-.user-card,
+.user-entry {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+    flex: 1 1 calc((100% - 24px) / 2);
+}
+
+.user-entry .btn {
+    display: inline-block;
+    margin-top: 12px;
+}
+
+/* Cards */
+
 .form-card {
     background: white;
     border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 28px;
+    border-radius: 10px;
+    padding: 26px;
     margin-bottom: 32px;
     box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
 }
 
-.user-card h2 {
-    margin-bottom: 22px;
-}
-
 .movie-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
     margin-bottom: 38px;
 }
 
 .movie-card {
+    flex: 1 1 calc((100% - 56px) / 3);
     background: white;
     border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 26px;
+    border-radius: 10px;
+    padding: 24px;
     box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
 }
 
 .movie-card img {
     width: 100%;
-    height: 380px;
+    height: 240px;
     object-fit: contain;
     background: #eef2f7;
-    border-radius: 10px;
-    margin-bottom: 18px;
+    border-radius: 8px;
+    margin-bottom: 16px;
 }
 
 .movie-card p {
-    font-size: 16px;
-    margin: 12px 0;
+    font-size: 14px;
+    margin: 10px 0;
 }
+
+/* Forms */
 
 input {
     width: 100%;
-    padding: 12px 14px;
+    padding: 9px 12px;
     border: 1px solid #cfd6e0;
     border-radius: 7px;
-    font-size: 16px;
-    margin-bottom: 12px;
+    font-size: 14px;
 }
 
 .btn,
@@ -120,10 +140,9 @@ button {
     color: white;
     border: none;
     border-radius: 7px;
-    padding: 11px 20px;
-    font-size: 16px;
+    padding: 9px 18px;
+    font-size: 14px;
     cursor: pointer;
-    margin-bottom: 12px;
 }
 
 .btn:hover,
@@ -133,48 +152,111 @@ button:hover {
 
 .delete-btn {
     background: #ef4444;
+    margin-top: 8px;
 }
 
 .delete-btn:hover {
     background: #dc2626;
 }
 
-.movie-card button {
-    width: 120px;
+.update-form {
+    margin-bottom: 12px;
 }
 
-.user-form,
+.update-form input {
+    width: 85%;
+    margin-bottom: 8px;
+}
+
+.update-form button,
+.movie-card .delete-btn {
+    width: 100px;
+}
+
 .movie-form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    grid-template-columns: 430px 140px;
+    grid-template-rows: auto auto;
+    gap: 10px 14px;
+}
+
+.movie-form label:first-of-type {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.movie-form label:last-of-type {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.movie-form button {
+    grid-column: 2;
+    grid-row: 2;
+    width: 110px;
+    align-self: end;
+}
+
+.user-form {
+    display: grid;
+    grid-template-columns: 1fr 140px;
+    gap: 12px;
     align-items: center;
 }
 
-.user-form button,
-.movie-form button {
-    width: 160px;
+.user-form button {
+    width: 140px;
 }
+
+/* Footer */
 
 .footer {
     background: #1e40af;
     color: white;
     text-align: center;
-    padding: 35px 0;
+    padding: 28px 0;
     margin-top: 40px;
 }
 
 .footer p {
     margin: 0;
+    font-size: 13px;
 }
 
-@media (max-width: 1000px) {
-    .movie-list {
+/* Mobile */
+
+@media (max-width: 900px) {
+    .movie-card {
+        flex-basis: calc((100% - 28px) / 2);
+    }
+
+    .user-entry {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .movie-card {
+        flex-basis: 100%;
+    }
+
+    .movie-form,
+    .user-form {
         grid-template-columns: 1fr;
     }
 
-    .user-form,
-    .movie-form {
-        grid-template-columns: 1fr;
+    .movie-form label,
+    .movie-form button {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .movie-form button,
+    .user-form button {
+        width: 110px;
+    }
+
+    h1 {
+        font-size: 28px;
     }
 }

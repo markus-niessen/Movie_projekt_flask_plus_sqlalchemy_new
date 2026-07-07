@@ -1,6 +1,34 @@
 from flask import Flask, render_template, request, redirect, url_for
-from models import db
+import os
+import requests
+
+from dotenv import load_dotenv
+
+from models import db, Movie
 from data_manager import DataManager
+
+load_dotenv()
+
+OMDB_API_KEY = os.getenv("OMDB_API_KEY")
+
+
+def fetch_movie_from_omdb(title, year=None):
+    params = {
+        "apikey": OMDB_API_KEY,
+        "t": title
+    }
+
+    if year:
+        params["y"] = year
+
+    response = requests.get("https://www.omdbapi.com/", params=params)
+    data = response.json()
+
+    if data.get("Response") == "False":
+        return None
+
+    return data
+
 
 app = Flask(__name__)
 
@@ -35,18 +63,21 @@ def add_user():
 def user_movies(user_id):
     if request.method == "POST":
         name = request.form.get("name")
-        director = request.form.get("director")
         year = request.form.get("year")
-        poster_url = request.form.get("poster_url")
 
-        if name and director and year and poster_url:
-            data_manager.add_movie(
-                user_id=user_id,
-                name=name,
-                director=director,
-                year=int(year),
-                poster_url=poster_url
-            )
+        if name:
+            movie_data = fetch_movie_from_omdb(name, year)
+
+            if movie_data:
+                movie = Movie(
+                    name=movie_data.get("Title"),
+                    director=movie_data.get("Director"),
+                    year=int(movie_data.get("Year")),
+                    poster_url=movie_data.get("Poster"),
+                    user_id=user_id
+                )
+
+                data_manager.add_movie(movie)
 
         return redirect(url_for("user_movies", user_id=user_id))
 
