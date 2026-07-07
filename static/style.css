@@ -85,6 +85,10 @@ a {
 
 /* Cards */
 
+.user-card form {
+    margin-top: 12px;
+}
+
 .form-card {
     background: white;
     border: 1px solid #e5e7eb;
