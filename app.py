@@ -7,7 +7,9 @@ from dotenv import load_dotenv
 from models import db, Movie
 from data_manager import DataManager
 
-load_dotenv()
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 OMDB_API_KEY = os.getenv("OMDB_API_KEY")
 
